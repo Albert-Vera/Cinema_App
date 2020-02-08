@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="637.0" prefWidth="516.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuPrueba">
+    <children>
+        <AnchorPane fx:id="panel_menu" prefHeight="77.0" prefWidth="516.0" style="-fx-background-color: #172a45;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <HBox prefHeight="77.0" prefWidth="516.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <Separator prefWidth="200.0" />
+                        <ImageView fitHeight="45.0" fitWidth="40.0">
+                            <image>
+                                <Image url="@../images/man_shape.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="15.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Separator prefWidth="200.0" />
+                        <ImageView fitHeight="45.0" fitWidth="40.0">
+                            <image>
+                                <Image url="@../images/man_shape.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="15.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Separator prefWidth="200.0" />
+                        <ImageView fitHeight="45.0" fitWidth="40.0">
+                            <image>
+                                <Image url="@../images/man_shape.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="15.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Separator prefWidth="200.0" />
+                        <ImageView fitHeight="45.0" fitWidth="40.0" layoutX="354.0" layoutY="25.0">
+                            <image>
+                                <Image url="@../images/man_shape.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="15.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Separator prefWidth="200.0" />
+                    </children>
+                </HBox>
+            </children></AnchorPane>
+        <AnchorPane fx:id="panel_primero" layoutX="10.0" layoutY="105.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #172a45;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0">
+            <children>
+                <TextField layoutX="258.0" layoutY="86.0" />
+                <TextField layoutX="258.0" layoutY="143.0" />
+                <TextField layoutX="258.0" layoutY="204.0" />
+                <Label layoutX="72.0" layoutY="91.0" text="Nombre: " textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="72.0" layoutY="207.0" text="Identificación:" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="72.0" layoutY="146.0" text="Apellidos:" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <RadioButton layoutX="206.0" layoutY="392.0" mnemonicParsing="false" text="Masculino" textFill="#fffafa" />
+                <ComboBox layoutX="279.0" layoutY="334.0" prefWidth="150.0" AnchorPane.leftAnchor="279.0" AnchorPane.topAnchor="334.0" />
+                <Label layoutX="72.0" layoutY="337.0" text="Estado Civil: " textFill="WHITE" AnchorPane.leftAnchor="72.0" AnchorPane.topAnchor="337.0">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <RadioButton layoutX="324.0" layoutY="392.0" mnemonicParsing="false" text="Femenino" textFill="#fffafa" />
+                <Label layoutX="72.0" layoutY="391.0" text="Género:" textFill="WHITE" AnchorPane.leftAnchor="72.0" AnchorPane.topAnchor="391.0">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+            </children></AnchorPane>
+        <AnchorPane fx:id="panel_segundo" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #172a45;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0">
+            <children>
+                <Label layoutX="57.0" layoutY="43.0" text="Residencia" textFill="#a8a2a2">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <Separator layoutX="212.0" layoutY="54.0" prefWidth="200.0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="49.0" />
+                <Label layoutX="57.0" layoutY="103.0" text="País:" textFill="WHITE" AnchorPane.leftAnchor="57.0">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <ComboBox layoutX="271.0" layoutY="101.0" prefWidth="150.0" AnchorPane.leftAnchor="260.0" AnchorPane.rightAnchor="95.0" />
+                <Label layoutX="57.0" layoutY="168.0" text="Estado:" textFill="WHITE" AnchorPane.leftAnchor="57.0">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <ComboBox layoutX="271.0" layoutY="165.0" prefWidth="150.0" AnchorPane.leftAnchor="261.0" AnchorPane.rightAnchor="95.0" />
+                <Label layoutX="61.0" layoutY="226.0" text="Ciudad:" textFill="#fcfafa" AnchorPane.leftAnchor="57.0">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <ComboBox layoutX="271.0" layoutY="224.0" prefWidth="150.0" AnchorPane.leftAnchor="261.0" AnchorPane.rightAnchor="95.0" />
+                <Separator layoutX="61.0" layoutY="295.0" prefHeight="3.0" prefWidth="291.0" AnchorPane.leftAnchor="57.0" AnchorPane.rightAnchor="184.0" />
+                <Label layoutX="376.0" layoutY="283.0" text="Contacto" textFill="#979696">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <Label layoutX="57.0" layoutY="343.0" text="Dirección:" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="55.0" layoutY="400.0" text="Teléfono:" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="55.0" layoutY="451.0" text="E-mail:" textFill="WHITE">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+                <TextField layoutX="265.0" layoutY="330.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="95.0" />
+                <TextField layoutX="265.0" layoutY="387.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="95.0" />
+                <TextField layoutX="256.0" layoutY="438.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="95.0" />
+            </children></AnchorPane>
+        <AnchorPane fx:id="panel_tercero" layoutY="95.0" prefHeight="542.0" prefWidth="516.0" style="-fx-background-color: #172a45;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="95.0" />
+        <ImageView fitHeight="31.0" fitWidth="30.0" layoutX="188.0" layoutY="72.0">
+            <image>
+                <Image url="@../images/up_arrow.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="31.0" fitWidth="30.0" layoutX="170.0" layoutY="72.0" visible="false">
+            <image>
+                <Image url="@../images/up_arrow.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="31.0" fitWidth="30.0" layoutX="296.0" layoutY="72.0" visible="false">
+            <image>
+                <Image url="@../images/up_arrow.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>
