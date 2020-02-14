@@ -5,11 +5,26 @@ import java.util.List;
 public class Pelis {
 
     private String titol, original, direccio, versio, idioma;
-    private String any;
+    private String any, cartell, sinopsi;
     private String dataEstrena;
     private List<String> interprets;
 
 
+    public String getCartell() {
+        return cartell;
+    }
+
+    public void setCartell(String cartell) {
+        this.cartell = cartell;
+    }
+
+    public String getSinopsi() {
+        return sinopsi;
+    }
+
+    public void setSinopsi(String sinopsi) {
+        this.sinopsi = sinopsi;
+    }
 
     public String getAny() {
         return any;
@@ -55,8 +70,8 @@ public class Pelis {
         return idioma;
     }
 
-    public void setIdioma(String idioma) {
-        this.idioma = idioma;
+    public void setIdioma(String idiomas) {
+        this.idioma = idiomas;
     }
 
     public String getDataEstrena() {

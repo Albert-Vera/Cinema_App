@@ -11,17 +11,29 @@ public class Item {
     private String versio;
     private String idioma;
     private String dataEstrena;
+    private String cartell;
+    private String sinopsi;
     private List<String> interpret;
 
-    public Item(String name, String any, String original, String direccio, String versio, String idioma, String data, List<String> interpret) {
+    public Item(String name, String any, String original, String direccio, String versio, String idioma, String dataEstrena, String cartell, String sinopsi, List<String> interpret) {
         this.name = name;
         this.any = any;
         this.original = original;
         this.direccio = direccio;
         this.versio = versio;
         this.idioma = idioma;
-        this.dataEstrena = data;
+        this.dataEstrena = dataEstrena;
+        this.cartell = cartell;
+        this.sinopsi = sinopsi;
         this.interpret = interpret;
+    }
+
+    public String getCartell() {
+        return cartell;
+    }
+
+    public String getSinopsi() {
+        return sinopsi;
     }
 
     public String getName() {

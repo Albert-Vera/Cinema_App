@@ -3,14 +3,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -75,13 +76,17 @@
             <Insets left="90.0" />
          </padding>
       </HBox>
-      <AnchorPane fx:id="anchopaneHome" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #060412;" visible="false" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="384.0">
+      <AnchorPane fx:id="anchopaneHome" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #060412;" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="384.0">
          <children>
-            <Label layoutX="644.0" layoutY="295.0" text="Home" textFill="#f5f5f5" AnchorPane.bottomAnchor="407.0" AnchorPane.leftAnchor="644.0" AnchorPane.rightAnchor="724.0" AnchorPane.topAnchor="295.0">
-               <font>
-                  <Font size="80.0" />
-               </font>
-            </Label>
+            <ScrollPane fx:id="scrollHome" layoutY="77.0" prefHeight="439.0" prefWidth="1560.0" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="30.0">
+               <content>
+                  <HBox fx:id="boxImage" layoutX="50.0" layoutY="50.0" prefHeight="177.0" prefWidth="204.0">
+                     <children>
+                        <ImageView fx:id="imageItem" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </HBox>
+               </content>
+            </ScrollPane>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchopaneCinemas" layoutX="1023.0" layoutY="501.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #060412;" visible="false" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="384.0">
@@ -95,55 +100,72 @@
          </children></AnchorPane>
       <AnchorPane fx:id="anchopanePeliculas" layoutX="1033.0" layoutY="511.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #060412;" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="384.0">
          <children>
-            <TableView fx:id="tabPeliculas" editable="true" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #adadad;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
-            <PieChart fx:id="quesitoPelicules" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0" />
+            <TableView fx:id="tabPeliculas" editable="true" onMouseClicked="#clickItem" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #adadad;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
          </children></AnchorPane>
       <AnchorPane fx:id="anchopaneSessions" layoutX="100.0" layoutY="394.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #060412;" visible="false" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="384.0">
          <children>
-            <TableView fx:id="tabSessions" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0" />
+            <TableView fx:id="tabSessions" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
          </children></AnchorPane>
       <AnchorPane fx:id="anchopaneCicles" layoutX="14.0" layoutY="384.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #060412;" visible="false" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="384.0">
          <children>
-            <Label fx:id="txetcicles" layoutX="491.0" layoutY="215.0" prefHeight="185.0" prefWidth="376.0" style="-fx-background-color: #60946e;" text="cicles" textAlignment="CENTER" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
-               <font>
-                  <Font size="80.0" />
-               </font>
-               <textFill>
-                  <LinearGradient endX="1.0" endY="1.0">
-                     <stops>
-                        <Stop color="#977f7f" />
-                        <Stop color="WHITE" offset="1.0" />
-                     </stops>
-                  </LinearGradient>
-               </textFill>
-            </Label>
+            <TableView fx:id="tabCicles" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
          </children></AnchorPane>
-      <ImageView fx:id="flecha1" fitHeight="61.0" fitWidth="65.0" layoutX="307.0" layoutY="340.0" AnchorPane.leftAnchor="188.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="339.0">
+      <AnchorPane fx:id="masInfoPeli" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #060412;" visible="false" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="384.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="90.0">
+               <children>
+                  <ImageView fx:id="imagePeli" fitHeight="418.0" fitWidth="397.0" pickOnBounds="true" preserveRatio="true">
+                     <HBox.margin>
+                        <Insets left="200.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="sinopsisPeli" prefHeight="316.0" prefWidth="368.0" textFill="#fffefe">
+                     <HBox.margin>
+                        <Insets bottom="50.0" left="200.0" right="50.0" top="50.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Button fx:id="btnEnrerePelis" layoutX="665.0" layoutY="540.0" mnemonicParsing="false" onMouseClicked="#onClickBtnEnrerePeli" text="Tornar Enrere" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="850.0" AnchorPane.rightAnchor="600.0">
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="flecha1" fitHeight="61.0" fitWidth="65.0" layoutX="307.0" layoutY="340.0" AnchorPane.leftAnchor="280.0" AnchorPane.topAnchor="339.0">
          <image>
-            <Image url="@../../../../../../Baixades/drop-down-arrow.png" />
+            <Image url="@drop-down-arrow.png" />
          </image>
          <viewport>
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <ImageView fx:id="flecha2" fitHeight="61.0" fitWidth="65.0" layoutX="687.0" layoutY="339.0" AnchorPane.leftAnchor="487.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="339.0">
+      <ImageView fx:id="flecha2" fitHeight="61.0" fitWidth="65.0" layoutX="687.0" layoutY="339.0" visible="false" AnchorPane.leftAnchor="573.0" AnchorPane.topAnchor="339.0">
          <image>
-            <Image url="@../../../../../../Baixades/drop-down-arrow.png" />
+            <Image url="@drop-down-arrow.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="flecha3" fitHeight="61.0" fitWidth="65.0" layoutX="1029.0" layoutY="339.0" AnchorPane.leftAnchor="855.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="339.0">
+      <ImageView fx:id="flecha3" fitHeight="61.0" fitWidth="65.0" layoutX="1029.0" layoutY="339.0" visible="false" AnchorPane.leftAnchor="941.0" AnchorPane.topAnchor="339.0">
          <image>
-            <Image url="@../../../../../../Baixades/drop-down-arrow.png" />
+            <Image url="@drop-down-arrow.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="flecha4" fitHeight="61.0" fitWidth="65.0" layoutX="1353.0" layoutY="339.0" AnchorPane.leftAnchor="1200.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="339.0">
+      <ImageView fx:id="flecha4" fitHeight="61.0" fitWidth="65.0" layoutX="1353.0" layoutY="339.0" visible="false" AnchorPane.leftAnchor="1289.0" AnchorPane.topAnchor="339.0">
          <image>
-            <Image url="@../../../../../../Baixades/drop-down-arrow.png" />
+            <Image url="@drop-down-arrow.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="flecha5" fitHeight="61.0" fitWidth="65.0" layoutX="1523.0" layoutY="339.0" AnchorPane.leftAnchor="1513.0" AnchorPane.rightAnchor="207.0" AnchorPane.topAnchor="339.0">
+      <ImageView fx:id="flecha5" fitHeight="61.0" fitWidth="65.0" layoutX="1523.0" layoutY="339.0" visible="false" AnchorPane.leftAnchor="1608.0" AnchorPane.topAnchor="339.0">
          <image>
-            <Image url="@../../../../../../Baixades/drop-down-arrow.png" />
+            <Image url="@drop-down-arrow.png" />
          </image>
       </ImageView>
    </children>

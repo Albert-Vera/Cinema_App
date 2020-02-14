@@ -1,3 +1,4 @@
+import model.Pelis;
 import model.Sales;
 
 import java.util.ArrayList;
@@ -7,40 +8,60 @@ import java.util.stream.Stream;
 
 public class PercentatgesPieChar {
 
-    List<Sales> listDatos = new ArrayList<>();
-    List<Long> retorno = new ArrayList<>();
-    Sales sales = new Sales();
+    List<Integer> retorno = new ArrayList<>();
 
-    public List<Long> percentatgeProvincias(List<Sales> llistaSales){
+    public List< Integer> percentatgeIdioma(List<Pelis> llistaPelis){
+        List<Integer> retornoIdioma = new ArrayList<>();
+
+        try{
+        System.out.println("lista piniculas al entrar: " + llistaPelis.size());
+//            List<Pelis> sList = llistaPelis.stream().filter(x -> !x.getIdioma().isEmpty()).collect(Collectors.toList());
+//            for(Pelis a: sList){
+//                System.out.println(a.getIdioma());
+//            }
+
+            Long catala =  llistaPelis.stream().filter(x -> x.getTitol().contains("à"))
+                    .count();
+            System.out.println("en catala: " + catala.intValue());
+
+            retornoIdioma.add(Math.toIntExact(catala));
+        }catch (Exception e){
+            System.out.println("Ha hagut un error al calcula percentages");
+
+        }
+        System.out.println("retorno: " +retornoIdioma.size());
+        return retornoIdioma;
+    }
+    public List<Integer> percentatgeProvincias(List<Sales> llistaSales){
+
+        try {
+            int barcelona = (int) llistaSales.stream().filter(x -> x.getProvincia().equalsIgnoreCase("Barcelona"))
+                    .count();
+            int girona = (int) llistaSales.stream().filter(x -> x.getProvincia().equalsIgnoreCase("Girona"))
+                    .count();
+            int tarragona = (int) llistaSales.stream().filter(x -> x.getProvincia().equalsIgnoreCase("Tarragona"))
+                    .count();
+            int lleida = (int) llistaSales.stream().filter(x -> x.getProvincia().equalsIgnoreCase("Lleida"))
+                    .count();
+            int illes  = (int) llistaSales.stream().filter(x -> x.getProvincia().equalsIgnoreCase("Illes Balears"))
+                    .count();
+
+            double Abarcelona = barcelona *100 /101;
+            double Agirona = girona*101/101;
+            double Alleida = lleida*100/101;
+            double Atarragona = tarragona*100/101;
+            double  Ailles = (illes * 100) /101;
+            retorno.add((int) 10);
+            retorno.add((int) 5);
+            retorno.add((int) 10);
+            retorno.add((int) 10);
+            retorno.add((int) 2);
+        }catch (Exception e){
+            System.out.println("Ha hagut un error al calcula percentages");
+        }
 
 
-        Long barcelona  = llistaSales.stream().filter(x -> x.getProvincia().equalsIgnoreCase("Barcelona"))
-                .count();
-        System.out.println(barcelona);
-        Long girona  = llistaSales.stream().filter(x -> x.getProvincia().equalsIgnoreCase("Girona"))
-                .count();
-        System.out.println(girona);
-        Long tarragona  = llistaSales.stream().filter(x -> x.getProvincia().equalsIgnoreCase("Tarragona"))
-                .count();
-        System.out.println(tarragona);
-        Long lleida  = llistaSales.stream().filter(x -> x.getProvincia().equalsIgnoreCase("Lleida"))
-                .count();
-        System.out.println(lleida);
-        Long illes  = llistaSales.stream().filter(x -> x.getProvincia().equalsIgnoreCase("Illes Balears"))
-                .count();
-        System.out.println(illes);
 
-        barcelona = (barcelona / 101 *100) *100;
-        girona = (girona / 101 *100) *100;
-        lleida = (lleida / 101 *100) *100;
-        tarragona = (tarragona / 101 *100) *100;
-        illes = (illes / 101 *100) *100;
-
-        retorno.add(barcelona);
-        retorno.add(girona);
-        retorno.add(tarragona);
-        retorno.add(lleida);
-        retorno.add(illes);
 
 
         return retorno;

@@ -17,6 +17,8 @@ public class LlegirXmlPeliculas extends DefaultHandler {
     private boolean idioma;
     private boolean data;
     private boolean interpret;
+    private boolean cartell;
+    private boolean sinopsi;
 
     private Pelis actualPeli = new Pelis();
     private List<Pelis> pelisList = new ArrayList<>();
@@ -30,6 +32,9 @@ public class LlegirXmlPeliculas extends DefaultHandler {
         }else
         if (qName.equalsIgnoreCase("Any")) {
             any = true;
+        }else
+        if (qName.equalsIgnoreCase("Cartell")) {
+            cartell = true;
         }else
         if (qName.equalsIgnoreCase("Original")) {
             original = true;
@@ -48,6 +53,9 @@ public class LlegirXmlPeliculas extends DefaultHandler {
         }else
         if (qName.equalsIgnoreCase("Interprets")) {
             interpret = true;
+        }else
+        if (qName.equalsIgnoreCase("Sinopsi")) {
+            sinopsi = true;
         }
     }
 
@@ -60,6 +68,10 @@ public class LlegirXmlPeliculas extends DefaultHandler {
         if (any) {
             actualPeli.setAny(new String(ch, start, length));
             any = false;
+        }
+        if (cartell) {
+            actualPeli.setCartell(new String(ch, start, length));
+            cartell = false;
         }
         if (original) {
             actualPeli.setOriginal(new String(ch, start, length));
@@ -84,6 +96,10 @@ public class LlegirXmlPeliculas extends DefaultHandler {
         if (interpret) {
             actualPeli.setInterprets(List.of(new String(ch, start, length)));
             interpret = false;
+        }
+        if (sinopsi) {
+            actualPeli.setSinopsi(new String(ch, start, length));
+            sinopsi = false;
         }
     }
 
