@@ -1,4 +1,4 @@
-
+package LlegirXML;
 
 import model.Pelis;
 import org.xml.sax.Attributes;

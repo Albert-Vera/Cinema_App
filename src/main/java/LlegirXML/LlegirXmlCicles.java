@@ -1,3 +1,4 @@
+package LlegirXML;
 
 import model.Cicle;
 import org.xml.sax.Attributes;
@@ -20,7 +21,7 @@ import java.util.List;
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
             super.startElement(uri, localName, qName, attributes);
-            if (qName.equalsIgnoreCase("CicleId")) {
+            if (qName.equalsIgnoreCase("CICLEID")) {
                 cicleId = true;
             }else
             if (qName.equalsIgnoreCase("CicleNom")) {

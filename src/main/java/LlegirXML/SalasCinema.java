@@ -1,5 +1,5 @@
+package LlegirXML;
 
-import model.Pelis;
 import model.Sales;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -10,12 +10,22 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class SalasCinema {
+
+    public List<Sales> llegirXmlSalesCinema(List<Sales> llistaSales){
+        try {
+            llistaSales = new SalasCinema().llegirSalas();
+        }catch (IOException e){
+            System.out.println("Ha habido un problema al leer datos");
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+        return llistaSales;
+    }
     List<Sales> llegirSalas() throws IOException, ParserConfigurationException, SAXException {
         URL url = new URL("http://gencat.cat/llengua/cinema/cinemes.xml");
         List<Sales> sales;

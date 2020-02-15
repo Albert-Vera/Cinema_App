@@ -1,3 +1,4 @@
+package LlegirXML;
 
 import model.Sessions;
 import org.xml.sax.Attributes;

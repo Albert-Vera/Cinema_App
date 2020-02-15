@@ -433,10 +433,10 @@ Event: 4,948 Thread 0x00007fb2b4597000 Implicit null exception at 0x00007fb2a46e
 Events (20 events):
 Event: 6,380 Loaded shared library /usr/lib/jvm/java-13-oracle/lib/server/libjvm.so
 Event: 6,380 Loaded shared library /usr/lib/jvm/java-13-oracle/lib/server/libjvm.so
-Event: 7,246 loading class Lsessions
-Event: 7,246 loading class Lsessions done
-Event: 7,247 loading class LlegirXmlSessions
-Event: 7,247 loading class LlegirXmlSessions done
+Event: 7,246 loading class LlegirXML.Lsessions
+Event: 7,246 loading class LlegirXML.Lsessions done
+Event: 7,247 loading class LlegirXML.LlegirXmlSessions
+Event: 7,247 loading class LlegirXML.LlegirXmlSessions done
 Event: 7,247 loading class model/Sessions
 Event: 7,247 loading class model/Sessions done
 Event: 7,347 Thread 0x00007fb2602c6000 Thread added: 0x00007fb2602c6000

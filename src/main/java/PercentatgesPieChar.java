@@ -45,17 +45,12 @@ public class PercentatgesPieChar {
                     .count();
             int illes  = (int) llistaSales.stream().filter(x -> x.getProvincia().equalsIgnoreCase("Illes Balears"))
                     .count();
-
-            double Abarcelona = barcelona *100 /101;
-            double Agirona = girona*101/101;
-            double Alleida = lleida*100/101;
-            double Atarragona = tarragona*100/101;
-            double  Ailles = (illes * 100) /101;
-            retorno.add((int) 10);
-            retorno.add((int) 5);
-            retorno.add((int) 10);
-            retorno.add((int) 10);
-            retorno.add((int) 2);
+            System.out.println("metode percentatge: " + barcelona);
+            retorno.add((int) barcelona);
+            retorno.add((int) girona);
+            retorno.add((int) tarragona);
+            retorno.add((int) lleida);
+            retorno.add((int) illes);
         }catch (Exception e){
             System.out.println("Ha hagut un error al calcula percentages");
         }
