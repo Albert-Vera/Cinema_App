@@ -37,6 +37,8 @@ public class Home  {
     public List<Sessions> llistaSessions = new ArrayList<>();
     public List<Cicle> llistaCicles = new ArrayList<>();
     List<Integer> percentatgesSales = new ArrayList<>();
+    List<Integer> percentatgesPelis = new ArrayList<>();
+
     @FXML HBox hboxImageHome;
 
 
@@ -46,11 +48,15 @@ public class Home  {
     @FXML TableView <ItemSessions> tabSessions;
     @FXML TableView <ItemCicle> tabCicles;
     @FXML PieChart quesitoCinemas;
+    @FXML PieChart quesitoPelis;
+
 
     private ObservableList<ItemSales> dataSales = FXCollections.observableArrayList();
     private ObservableList<Item> dataPeliculas = FXCollections.observableArrayList();
     private ObservableList<ItemSessions> dataSessions = FXCollections.observableArrayList();
     private ObservableList<PieChart.Data> quesitoCinesData = FXCollections.observableArrayList();
+    private ObservableList<PieChart.Data> quesitoPelisData = FXCollections.observableArrayList();
+
     private ObservableList<ItemCicle> dataCicles = FXCollections.observableArrayList();
 
     /**
@@ -325,7 +331,6 @@ public class Home  {
     void setTabSalas( ) {
         llistaSales = new ArrayList<>();
         llistaSales = new SalasCinema().llegirXmlSalesCinema(llistaSales);
-
         PercentatgesPieChar percentatgesPieChar = new PercentatgesPieChar();
         percentatgesSales = percentatgesPieChar.percentatgeProvincias(llistaSales);
         quesitoCinesData.add(new PieChart.Data("Barcelona", percentatgesSales.get(0).intValue()));
@@ -360,7 +365,18 @@ public class Home  {
     void setTabPeliculas() {
         llistaPelis = new ArrayList<>();
         llistaPelis = new Pelicules().llegirXmlPelis(llistaPelis);
-        System.out.println("llista:dentro " +llistaPelis.size());
+        PercentatgesPieChar percentatgesPieChar = new PercentatgesPieChar();
+        percentatgesPelis = percentatgesPieChar.percentatgeIdioma(llistaPelis);
+        System.out.println("tamnay: " + percentatgesPelis.size());
+        quesitoPelisData.add(new PieChart.Data("Francès", percentatgesPelis.get(0).intValue()));
+        quesitoPelisData.add(new PieChart.Data("Anglès", percentatgesPelis.get(1).intValue()));
+        quesitoPelisData.add(new PieChart.Data("Castellà", percentatgesPelis.get(2).intValue()));
+        quesitoPelisData.add(new PieChart.Data("Català", percentatgesPelis.get(3).intValue()));
+        quesitoPelisData.add(new PieChart.Data("Alemany", percentatgesPelis.get(4).intValue()));
+        quesitoPelisData.add(new PieChart.Data("Italià", percentatgesPelis.get(5).intValue()));
+
+        quesitoPelis.setData(quesitoPelisData);
+        quesitoPelis.setTitle("Idiomes de las Pel·licules");
 
         TableColumn name = new TableColumn("name");
         TableColumn any = new TableColumn("any");

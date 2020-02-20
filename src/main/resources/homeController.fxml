@@ -74,7 +74,7 @@
             <Insets left="90.0" />
          </padding>
       </HBox>
-      <AnchorPane fx:id="anchopaneHome" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #060412;" visible="true" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="384.0">
+      <AnchorPane fx:id="anchopaneHome" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #060412;" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="384.0">
          <children>
             <HBox fx:id="hboxImageHome" prefHeight="100.0" prefWidth="200.0" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -100,9 +100,14 @@
                </children>
             </HBox>
          </children></AnchorPane>
-      <AnchorPane fx:id="anchopanePeliculas" layoutX="1033.0" layoutY="511.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #060412;" visible="false" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="384.0">
+      <AnchorPane fx:id="anchopanePeliculas" layoutX="1033.0" layoutY="511.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #060412;" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="384.0">
          <children>
-            <TableView fx:id="tabPeliculas" editable="true" onMouseClicked="#clickItemPelis" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #adadad;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="25.0" />
+            <TableView fx:id="tabPeliculas" editable="true" onMouseClicked="#clickItemPelis" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #adadad;" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="550.0" AnchorPane.topAnchor="25.0" />
+            <HBox prefHeight="366.0" prefWidth="357.0" style="-fx-background-color: #dfe8e7;" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="100.0">
+               <children>
+                  <PieChart fx:id="quesitoPelis" />
+               </children>
+            </HBox>
          </children></AnchorPane>
       <AnchorPane fx:id="anchopaneSessions" layoutX="100.0" layoutY="394.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #060412;" visible="false" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="90.0" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="384.0">
          <children>
