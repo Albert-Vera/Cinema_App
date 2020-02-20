@@ -37,7 +37,6 @@ public class Home  {
     public List<Sessions> llistaSessions = new ArrayList<>();
     public List<Cicle> llistaCicles = new ArrayList<>();
     List<Integer> percentatgesSales = new ArrayList<>();
-    String[] cartell = new String[14];
     @FXML HBox hboxImageHome;
 
 
@@ -54,7 +53,10 @@ public class Home  {
     private ObservableList<PieChart.Data> quesitoCinesData = FXCollections.observableArrayList();
     private ObservableList<ItemCicle> dataCicles = FXCollections.observableArrayList();
 
-
+    /**
+     * Aqui quan es fa click mostra cartell i sinopsis de la peli
+     * @param event
+     */
     @FXML
     public void clickItemPelis(MouseEvent event) {
 
@@ -72,9 +74,14 @@ public class Home  {
             sinopsisPeli.setWrapText(true);
         }
     }
+
+    /**
+     * Aqui quan es fa click mostra cartell cicle i nom cicle i després busca les pel·licules relacionades
+     *
+     * @param event
+     */
     @FXML
     public void clickItemCicles(MouseEvent event){
-        System.out.println("toy dentro click");
 
         if (event.getClickCount() == 1) {//Checking one click
             anchopaneCicles.setVisible(false);
@@ -93,15 +100,11 @@ public class Home  {
                 if ( s.getCicleId().equalsIgnoreCase(id)){
                     for ( Pelis p: llistaPelis){
                         if ( s.getIdFilm().equalsIgnoreCase(p.getIdFilm())){
-
                             if (peli.size() == 0){
                                 peli.add(p.getTitol());
                             }else {
-
                                 for (int i = 0; i < peli.size(); i++) {
-
                                     if (!peli.get(i).equalsIgnoreCase(p.getTitol()) && peli.size() < 4) {
-                                        System.out.println("burroooo:  " +  peli.size());
                                         peli.add(p.getTitol());
                                     }
                                 }
@@ -113,19 +116,21 @@ public class Home  {
             }
             llistaPelis.clear();
             llistaSessions.clear();
+
             for (int i = 0; i < peli.size()-1 ; i++) {
-
-
                 llista +=  peli.get(i) + ", ";
-                System.out.println(" elemento: " + llista);
             }
-
             imageCicle.setImage(image);
             sinopsisCicle.setText("Nom Cicle:  "+  text + "\n\nInfo :\n\n" + text2 + "\n\nPel·licules: " + llista);
-
             sinopsisCicle.setWrapText(true);
         }
     }
+
+    /**
+     * Aquest métode li enviat a un altre controller
+     * Els altres métodes ho he intentat però no he tingut temps per aconseguir-ho
+     * @param mouseEvent
+     */
     public void onClickHome (MouseEvent mouseEvent){
         anchopaneHome.setVisible(true);
         flecha1.setVisible(true);
@@ -143,8 +148,8 @@ public class Home  {
         flecha5.setVisible(false);
         masInfoPeli.setVisible(false);
         masInfoCicle.setVisible(false);
-
-        //setHome();
+        // Aqui l'envio a un altre controller
+        new HomeFragmentController().setHome();
     }
 
     public void onClickSalesCinema(MouseEvent mouseEvent)  {
@@ -229,6 +234,11 @@ public class Home  {
         masInfoCicle.setVisible(false);
         anchopaneCicles.setVisible(true);
     }
+
+    /**
+     * Aquest métode li desconectat per que consumia massa reursos de forma inncesaria
+     * hi aconseguit ho mateix estalvian recursos, amb una sola captura de pantalla
+     */
     void setHome(){
 //        llistaPelis = new Pelicules().llegirXmlPelis(llistaPelis);
 //        String urlImage = "http://www.gencat.cat/llengua/cinema/";
