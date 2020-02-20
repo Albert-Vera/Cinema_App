@@ -121,7 +121,7 @@ public class Home  {
             }
 
             imageCicle.setImage(image);
-            sinopsisCicle.setText("Nom Cicle:  "+  text + "\n\nInfo :\n\n" + text2 + "\n\nTitol pel·licula: " + llista);
+            sinopsisCicle.setText("Nom Cicle:  "+  text + "\n\nInfo :\n\n" + text2 + "\n\nPel·licules: " + llista);
 
             sinopsisCicle.setWrapText(true);
         }
@@ -161,8 +161,7 @@ public class Home  {
         masInfoPeli.setVisible(false);
         masInfoCicle.setVisible(false);
 
-        if (llistaSales.size() == 0) {
-            System.out.println("kukksklk");
+        if (llistaSales.isEmpty()) {
             setTabSalas();
         }
     }
@@ -181,8 +180,7 @@ public class Home  {
         masInfoPeli.setVisible(false);
         masInfoCicle.setVisible(false);
 
-        if (llistaPelis.size() == 0) {
-
+        if (llistaPelis.isEmpty()){
             setTabPeliculas();
         }
     }
@@ -200,7 +198,7 @@ public class Home  {
         masInfoPeli.setVisible(false);
         masInfoCicle.setVisible(false);
 
-        if (llistaSessions.size() == 0) {
+        if (llistaSessions.isEmpty()) {
             setTabSessions();
         }
     }
@@ -218,8 +216,7 @@ public class Home  {
         masInfoPeli.setVisible(false);
         masInfoCicle.setVisible(false);
 
-        if (llistaCicles.size() == 0) {
-            System.out.println( "entro a condicional cicles");
+        if (llistaCicles.isEmpty()) {
             setTabCicles();
         }
     }
@@ -319,10 +316,8 @@ public class Home  {
         llistaSales = new ArrayList<>();
         llistaSales = new SalasCinema().llegirXmlSalesCinema(llistaSales);
 
-        // if (percentatgesSales.size() == 0) {
         PercentatgesPieChar percentatgesPieChar = new PercentatgesPieChar();
         percentatgesSales = percentatgesPieChar.percentatgeProvincias(llistaSales);
-        // }
         quesitoCinesData.add(new PieChart.Data("Barcelona", percentatgesSales.get(0).intValue()));
         quesitoCinesData.add(new PieChart.Data("Girona", percentatgesSales.get(1).intValue()));
         quesitoCinesData.add(new PieChart.Data("Tarragona", percentatgesSales.get(2).intValue()));
