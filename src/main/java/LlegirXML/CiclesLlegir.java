@@ -27,6 +27,7 @@ public class CiclesLlegir {
 
             e.printStackTrace();
         }
+
         return llistaCicles;
     }
     List<Cicle> llegirCicles() throws IOException, ParserConfigurationException, SAXException {

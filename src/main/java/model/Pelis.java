@@ -4,11 +4,18 @@ import java.util.List;
 
 public class Pelis {
 
-    private String titol, original, direccio, versio, idioma;
+    private String idFilm, titol, original, direccio, versio, idioma;
     private String any, cartell, sinopsi;
     private String dataEstrena;
     private List<String> interprets;
 
+    public String getIdFilm() {
+        return idFilm;
+    }
+
+    public void setIdFilm(String idFilm) {
+        this.idFilm = idFilm;
+    }
 
     public String getCartell() {
         return cartell;

@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Item {
 
+    private String idFilm;
     private String name;
     private String any;
     private String original;
@@ -15,7 +16,8 @@ public class Item {
     private String sinopsi;
     private List<String> interpret;
 
-    public Item(String name, String any, String original, String direccio, String versio, String idioma, String dataEstrena, String cartell, String sinopsi, List<String> interpret) {
+    public Item(String idFilm, String name, String any, String original, String direccio, String versio, String idioma, String dataEstrena, String cartell, String sinopsi, List<String> interpret) {
+        this.idFilm = idFilm;
         this.name = name;
         this.any = any;
         this.original = original;
@@ -26,6 +28,10 @@ public class Item {
         this.cartell = cartell;
         this.sinopsi = sinopsi;
         this.interpret = interpret;
+    }
+
+    public String getIdFilm() {
+        return idFilm;
     }
 
     public String getCartell() {

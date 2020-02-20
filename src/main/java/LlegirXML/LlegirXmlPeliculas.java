@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LlegirXmlPeliculas extends DefaultHandler {
+    private boolean idFilm;
     private boolean name;
     private boolean any;
     private boolean original;
@@ -27,6 +28,9 @@ public class LlegirXmlPeliculas extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
         super.startElement(uri, localName, qName, attributes);
+        if (qName.equalsIgnoreCase("IDFILM")) {
+            idFilm = true;
+        }else
         if (qName.equalsIgnoreCase("Titol")) {
             name = true;
         }else
@@ -61,6 +65,10 @@ public class LlegirXmlPeliculas extends DefaultHandler {
 
     @Override
     public void characters(char[] ch, int start, int length) throws SAXException {
+        if (idFilm) {
+            actualPeli.setIdFilm(new String(ch, start, length));
+            idFilm = false;
+        }
         if (name) {
             actualPeli.setTitol(new String(ch, start, length));
             name = false;

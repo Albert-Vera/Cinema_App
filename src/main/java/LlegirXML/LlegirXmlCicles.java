@@ -12,6 +12,7 @@ import java.util.List;
         private boolean cicleId;
         private boolean cicleNom;
         private boolean cicleInfo;
+        private boolean imageCicle;
 
 
         private Cicle actualCicle = new Cicle();
@@ -21,7 +22,8 @@ import java.util.List;
         public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
 
             super.startElement(uri, localName, qName, attributes);
-            if (qName.equalsIgnoreCase("CICLEID")) {
+
+            if (qName.equalsIgnoreCase("CicleId")) {
                 cicleId = true;
             }else
             if (qName.equalsIgnoreCase("CicleNom")) {
@@ -29,13 +31,16 @@ import java.util.List;
             }else
             if (qName.equalsIgnoreCase("CicleInfo")) {
                 cicleInfo = true;
+            }else
+            if (qName.equalsIgnoreCase("IMGCICLE")) {
+                imageCicle = true;
             }
         }
 
         @Override
         public void characters(char[] ch, int start, int length) throws SAXException {
             if (cicleId) {
-                actualCicle.setClicleId(new String(ch, start, length));
+                actualCicle.setCicleId(new String(ch, start, length));
                 cicleId = false;
             }
             if (cicleNom) {
@@ -45,6 +50,10 @@ import java.util.List;
             if (cicleInfo) {
                 actualCicle.setCicleInfo(new String(ch, start, length));
                 cicleInfo = false;
+            }
+            if (imageCicle) {
+                actualCicle.setImageCicle(new String(ch, start, length));
+                imageCicle = false;
             }
         }
 

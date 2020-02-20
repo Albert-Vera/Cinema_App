@@ -2,12 +2,6 @@ import LlegirXML.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.geometry.HPos;
-import javafx.geometry.Pos;
-import javafx.geometry.VPos;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -16,14 +10,9 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import model.*;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class Home  {
 
@@ -38,15 +27,18 @@ public class Home  {
     @FXML private AnchorPane anchopaneSessions;
     @FXML private AnchorPane anchopaneCicles;
     @FXML private AnchorPane masInfoPeli;
-    @FXML private ImageView imagePeli;
-    @FXML private Label sinopsisPeli;
-    @FXML private ImageView image0, image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13;
+    @FXML private AnchorPane masInfoCicle;
+
+    @FXML private ImageView imagePeli, imageCicle;
+    @FXML private Label sinopsisPeli, sinopsisCicle;
+    @FXML private ImageView image0, image1, image2, image3, image4, image5, image6, image7, image8, image9, image10, image11, image12, image13, imageTotal;
     public List<Pelis> llistaPelis = new ArrayList<>();
     public List<Sales> llistaSales = new ArrayList<>();
     public List<Sessions> llistaSessions = new ArrayList<>();
     public List<Cicle> llistaCicles = new ArrayList<>();
     List<Integer> percentatgesSales = new ArrayList<>();
     String[] cartell = new String[14];
+    @FXML HBox hboxImageHome;
 
 
 
@@ -62,8 +54,9 @@ public class Home  {
     private ObservableList<PieChart.Data> quesitoCinesData = FXCollections.observableArrayList();
     private ObservableList<ItemCicle> dataCicles = FXCollections.observableArrayList();
 
+
     @FXML
-    public void clickItem(MouseEvent event) {
+    public void clickItemPelis(MouseEvent event) {
 
         if (event.getClickCount() == 1) {//Checking one click
             anchopanePeliculas.setVisible(false);
@@ -72,15 +65,74 @@ public class Home  {
             Image image = new Image (urlImage);
             String text = tabPeliculas.getSelectionModel().getSelectedItem().getSinopsi();
             String textTitol = tabPeliculas.getSelectionModel().getSelectedItem().getName();
+            //String text2 =  tabCicles.getSelectionModel().getSelectedItem().getCicleNom();
 
             imagePeli.setImage(image);
-            sinopsisPeli.setText("Titol:  "+  textTitol + "\n\nSinopsi:\n\n" + text );
+            sinopsisPeli.setText("Titol:  "+  textTitol + "\n\nSinopsi:\n\n" + text + "\n\nCicle: " );
             sinopsisPeli.setWrapText(true);
+        }
+    }
+    @FXML
+    public void clickItemCicles(MouseEvent event){
+        System.out.println("toy dentro click");
+
+        if (event.getClickCount() == 1) {//Checking one click
+            anchopaneCicles.setVisible(false);
+            masInfoCicle.setVisible(true);
+            String urlImage = "http://www.gencat.cat/llengua/cinema/" + tabCicles.getSelectionModel().getSelectedItem().getImageCicle();
+            Image image = new Image (urlImage);
+            String text = tabCicles.getSelectionModel().getSelectedItem().getCicleNom();
+            String text2 = tabCicles.getSelectionModel().getSelectedItem().getCicleInfo();
+            String id = tabCicles.getSelectionModel().getSelectedItem().getCicleId();
+            llistaPelis = new Pelicules().llegirXmlPelis(llistaPelis);
+            llistaSessions = new Lsessions().llegirXmlSessions(llistaSessions);
+            List<String> peli = new ArrayList<>();
+            String llista = "";
+
+            for (Sessions s: llistaSessions){
+                if ( s.getCicleId().equalsIgnoreCase(id)){
+                    for ( Pelis p: llistaPelis){
+                        if ( s.getIdFilm().equalsIgnoreCase(p.getIdFilm())){
+
+                            if (peli.size() == 0){
+                                peli.add(p.getTitol());
+                            }else {
+
+                                for (int i = 0; i < peli.size(); i++) {
+
+                                    if (!peli.get(i).equalsIgnoreCase(p.getTitol()) && peli.size() < 4) {
+                                        System.out.println("burroooo:  " +  peli.size());
+                                        peli.add(p.getTitol());
+                                    }
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+            llistaPelis.clear();
+            llistaSessions.clear();
+            for (int i = 0; i < peli.size()-1 ; i++) {
+
+
+                llista +=  peli.get(i) + ", ";
+                System.out.println(" elemento: " + llista);
+            }
+
+            imageCicle.setImage(image);
+            sinopsisCicle.setText("Nom Cicle:  "+  text + "\n\nInfo :\n\n" + text2 + "\n\nTitol pel·licula: " + llista);
+
+            sinopsisCicle.setWrapText(true);
         }
     }
     public void onClickHome (MouseEvent mouseEvent){
         anchopaneHome.setVisible(true);
         flecha1.setVisible(true);
+        hboxImageHome.setVisible(true);
+        imageTotal.setVisible(true);
+//        imageTotal.setFitHeight(550);
+//        imageTotal.setFitWidth(1625);
         anchopaneCinemas.setVisible(false);
         flecha2.setVisible(false);
         anchopanePeliculas.setVisible(false);
@@ -90,10 +142,12 @@ public class Home  {
         anchopaneCicles.setVisible(false);
         flecha5.setVisible(false);
         masInfoPeli.setVisible(false);
-        setHome();
+        masInfoCicle.setVisible(false);
+
+        //setHome();
     }
 
-    public void onClickSalesCinema(MouseEvent mouseEvent) throws IOException {
+    public void onClickSalesCinema(MouseEvent mouseEvent)  {
         anchopaneHome.setVisible(false);
         flecha1.setVisible(false);
         anchopaneCinemas.setVisible(true);
@@ -105,13 +159,14 @@ public class Home  {
         anchopaneCicles.setVisible(false);
         flecha5.setVisible(false);
         masInfoPeli.setVisible(false);
+        masInfoCicle.setVisible(false);
 
         if (llistaSales.size() == 0) {
             System.out.println("kukksklk");
             setTabSalas();
         }
     }
-    public void onClickPeliculas (MouseEvent mouseEvent) throws IOException, SAXException, ParserConfigurationException {
+    public void onClickPeliculas (MouseEvent mouseEvent)  {
 
         anchopaneHome.setVisible(false);
         flecha1.setVisible(false);
@@ -124,7 +179,8 @@ public class Home  {
         anchopaneCicles.setVisible(false);
         flecha5.setVisible(false);
         masInfoPeli.setVisible(false);
-        System.out.println("llista: " +llistaPelis.size());
+        masInfoCicle.setVisible(false);
+
         if (llistaPelis.size() == 0) {
 
             setTabPeliculas();
@@ -142,6 +198,7 @@ public class Home  {
         anchopaneCicles.setVisible(false);
         flecha5.setVisible(false);
         masInfoPeli.setVisible(false);
+        masInfoCicle.setVisible(false);
 
         if (llistaSessions.size() == 0) {
             setTabSessions();
@@ -159,8 +216,10 @@ public class Home  {
         anchopaneCicles.setVisible(true);
         flecha5.setVisible(true);
         masInfoPeli.setVisible(false);
+        masInfoCicle.setVisible(false);
 
         if (llistaCicles.size() == 0) {
+            System.out.println( "entro a condicional cicles");
             setTabCicles();
         }
     }
@@ -169,67 +228,75 @@ public class Home  {
         masInfoPeli.setVisible(false);
         anchopanePeliculas.setVisible(true);
     }
+    public void onClickBtnEnrereCicle(){
+        masInfoCicle.setVisible(false);
+        anchopaneCicles.setVisible(true);
+    }
     void setHome(){
-        llistaPelis = new Pelicules().llegirXmlPelis(llistaPelis);
-        String urlImage = "http://www.gencat.cat/llengua/cinema/";
+//        llistaPelis = new Pelicules().llegirXmlPelis(llistaPelis);
+//        String urlImage = "http://www.gencat.cat/llengua/cinema/";
+//
+//        if (cartell[0] == null) {
+//            System.out.println("Calculo array: " );
+//            for (int i = 0; i < 14; i++) {
+//                cartell[i] = urlImage + llistaPelis.get(i).getCartell();
+//            }
+//        }
+//        llistaPelis.clear();
 
-        if (cartell[0] == null) {
-            System.out.println("Calculo array: " );
-            for (int i = 0; i < 14; i++) {
-                cartell[i] = urlImage + llistaPelis.get(i).getCartell();
-            }
-            llistaPelis.clear();
-        }
-        Image image = new Image(cartell[0]);
-        image0.setImage( image);
-        image0.setFitHeight(270);
-
-        image = new Image(cartell[1]);
-        image1.setImage(image);
-        image1.setFitHeight(270);
-
-        image = new Image(cartell[2]);
-        image2.setImage(image);
-        image2.setFitHeight(270);
-
-        image = new Image(cartell[3]);
-        image3.setImage(image);
-        image3.setFitHeight(270);
-
-        image = new Image(cartell[4]);
-        image4.setImage(image);
-        image4.setFitHeight(270);
-        image = new Image(cartell[5]);
-        image5.setImage(image);
-        image5.setFitHeight(270);
-        image = new Image(cartell[6]);
-        image6.setImage(image);
-        image6.setFitHeight(270);
-        image = new Image(cartell[7]);
-        image7.setImage(image);
-        image7.setFitHeight(270);
-        image = new Image(cartell[8]);
-        image8.setImage(image);
-        image8.setFitHeight(270);
-        image = new Image(cartell[9]);
-        image9.setImage(image);
-        image9.setFitHeight(270);
-        image = new Image(cartell[10]);
-        image10.setImage(image);
-        image10.setFitHeight(270);
-        image = new Image(cartell[11]);
-        image11.setImage(image);
-        image11.setFitHeight(270);
-        image = new Image(cartell[12]);
-        image12.setImage(image);
-        image12.setFitHeight(270);
-        image = new Image(cartell[13]);
-        image13.setImage(image);
-        image13.setFitHeight(270);
+//        Image image = new Image("imagesInfoCinamaHome.png");
+//        imageTotal.setImage(image);
+//        imageTotal.setFitHeight(600);
+//        Image image = new Image(cartell[0]);
+//        image0.setImage( image);
+//        image0.setFitHeight(270);
+//
+//        image = new Image(cartell[1]);
+//        image1.setImage(image);
+//        image1.setFitHeight(270);
+//
+//        image = new Image(cartell[2]);
+//        image2.setImage(image);
+//        image2.setFitHeight(270);
+//
+//        image = new Image(cartell[3]);
+//        image3.setImage(image);
+//        image3.setFitHeight(270);
+//
+//        image = new Image(cartell[4]);
+//        image4.setImage(image);
+//        image4.setFitHeight(270);
+//        image = new Image(cartell[5]);
+//        image5.setImage(image);
+//        image5.setFitHeight(270);
+//        image = new Image(cartell[6]);
+//        image6.setImage(image);
+//        image6.setFitHeight(270);
+//        image = new Image(cartell[7]);
+//        image7.setImage(image);
+//        image7.setFitHeight(270);
+//        image = new Image(cartell[8]);
+//        image8.setImage(image);
+//        image8.setFitHeight(270);
+//        image = new Image(cartell[9]);
+//        image9.setImage(image);
+//        image9.setFitHeight(270);
+//        image = new Image(cartell[10]);
+//        image10.setImage(image);
+//        image10.setFitHeight(270);
+//        image = new Image(cartell[11]);
+//        image11.setImage(image);
+//        image11.setFitHeight(270);
+//        image = new Image(cartell[12]);
+//        image12.setImage(image);
+//        image12.setFitHeight(270);
+//        image = new Image(cartell[13]);
+//        image13.setImage(image);
+//        image13.setFitHeight(270);
     }
     void setTabCicles(){
+        llistaCicles = new ArrayList<>();
         llistaCicles = new CiclesLlegir().llegirXmlCicles(llistaCicles);
-        System.out.println("tamay de llista cicles: " + llistaCicles.get(0).getClicleId());
 
         TableColumn cicleId = new TableColumn("cicleId");
         TableColumn cicleNom = new TableColumn("cicleNom");
@@ -244,12 +311,12 @@ public class Home  {
         tabCicles.setItems(dataCicles);
 
         for (Cicle cicle : llistaCicles) {
-            dataCicles.add(new ItemCicle(cicle.getClicleId(), cicle.getCicleNom(), cicle.getCicleInfo()));
+            dataCicles.add(new ItemCicle(cicle.getCicleId(), cicle.getCicleNom(), cicle.getCicleInfo(), cicle.getImageCicle()));
 
         }
-
     }
     void setTabSalas( ) {
+        llistaSales = new ArrayList<>();
         llistaSales = new SalasCinema().llegirXmlSalesCinema(llistaSales);
 
         // if (percentatgesSales.size() == 0) {
@@ -286,6 +353,7 @@ public class Home  {
         }
     }
     void setTabPeliculas() {
+        llistaPelis = new ArrayList<>();
         llistaPelis = new Pelicules().llegirXmlPelis(llistaPelis);
         System.out.println("llista:dentro " +llistaPelis.size());
 
@@ -310,12 +378,12 @@ public class Home  {
         tabPeliculas.setItems(dataPeliculas);
 
         for (Pelis pelis : llistaPelis) {
-            dataPeliculas.add(new Item(pelis.getTitol(), pelis.getAny(), pelis.getOriginal(),pelis.getDireccio(), pelis.getVersio(), pelis.getIdioma(), pelis.getDataEstrena(), pelis.getCartell(),pelis.getSinopsi(), pelis.getInterprets()));
+            dataPeliculas.add(new Item(pelis.getIdFilm(), pelis.getTitol(), pelis.getAny(), pelis.getOriginal(),pelis.getDireccio(), pelis.getVersio(), pelis.getIdioma(), pelis.getDataEstrena(), pelis.getCartell(),pelis.getSinopsi(), pelis.getInterprets()));
 
         }
     }
     void setTabSessions() {
-        List<Sessions> llistaSessions = new ArrayList<>();
+        llistaSessions = new ArrayList<>();
         llistaSessions = new Lsessions().llegirXmlSessions(llistaSessions);
 
         TableColumn idFilm = new TableColumn("idFilm");

@@ -1,21 +1,26 @@
 package model;
 
 public class ItemCicle {
-    private String clicleId;
-    private String cicleNom, cicleInfo;
+    private String cicleId;
+    private String cicleNom, cicleInfo, imageCicle;
 
-    public ItemCicle(String clicleId, String cicleNom, String cicleInfo) {
-        this.clicleId = clicleId;
+    public ItemCicle(String cicleId, String cicleNom, String cicleInfo, String imageCicle) {
+        this.cicleId = cicleId;
         this.cicleNom = cicleNom;
         this.cicleInfo = cicleInfo;
+        this.imageCicle = imageCicle;
     }
 
-    public String getClicleId() {
-        return clicleId;
+    public String getImageCicle() {
+        return imageCicle;
     }
 
-    public void setClicleId(String clicleId) {
-        this.clicleId = clicleId;
+    public String getCicleId() {
+        return cicleId;
+    }
+
+    public void setCicleId(String cicleId) {
+        this.cicleId = cicleId;
     }
 
     public String getCicleNom() {
