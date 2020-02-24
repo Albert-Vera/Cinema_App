@@ -311,136 +311,152 @@ public class Home  {
         llistaCicles = new ArrayList<>();
         llistaCicles = new CiclesLlegir().llegirXmlCicles(llistaCicles);
 
-        TableColumn cicleId = new TableColumn("cicleId");
-        TableColumn cicleNom = new TableColumn("cicleNom");
-        TableColumn cicleInfo = new TableColumn("cicleInfo");
+        if (tabCicles.getColumns().size() == 0) {
+            TableColumn cicleId = new TableColumn("cicleId");
+            TableColumn cicleNom = new TableColumn("cicleNom");
+            TableColumn cicleInfo = new TableColumn("cicleInfo");
 
 
-        cicleId.setCellValueFactory(new PropertyValueFactory<ItemCicle, String>("cicleId"));
-        cicleNom.setCellValueFactory(new PropertyValueFactory<ItemCicle, String>("cicleNom"));
-        cicleInfo.setCellValueFactory(new PropertyValueFactory<ItemCicle, String>("cicleInfo"));
+            cicleId.setCellValueFactory(new PropertyValueFactory<ItemCicle, String>("cicleId"));
+            cicleNom.setCellValueFactory(new PropertyValueFactory<ItemCicle, String>("cicleNom"));
+            cicleInfo.setCellValueFactory(new PropertyValueFactory<ItemCicle, String>("cicleInfo"));
 
-        tabCicles.getColumns().addAll(cicleId, cicleNom, cicleInfo);
-        tabCicles.setItems(dataCicles);
+            tabCicles.getColumns().addAll(cicleId, cicleNom, cicleInfo);
+            tabCicles.setItems(dataCicles);
 
-        for (Cicle cicle : llistaCicles) {
-            dataCicles.add(new ItemCicle(cicle.getCicleId(), cicle.getCicleNom(), cicle.getCicleInfo(), cicle.getImageCicle()));
+            for (Cicle cicle : llistaCicles) {
+                dataCicles.add(new ItemCicle(cicle.getCicleId(), cicle.getCicleNom(), cicle.getCicleInfo(), cicle.getImageCicle()));
 
+            }
         }
+        llistaCicles.clear();
     }
     void setTabSalas( ) {
         llistaSales = new ArrayList<>();
         llistaSales = new SalasCinema().llegirXmlSalesCinema(llistaSales);
-        PercentatgesPieChar percentatgesPieChar = new PercentatgesPieChar();
-        percentatgesSales = percentatgesPieChar.percentatgeProvincias(llistaSales);
-        quesitoCinesData.add(new PieChart.Data("Barcelona", percentatgesSales.get(0).intValue()));
-        quesitoCinesData.add(new PieChart.Data("Girona", percentatgesSales.get(1).intValue()));
-        quesitoCinesData.add(new PieChart.Data("Tarragona", percentatgesSales.get(2).intValue()));
-        quesitoCinesData.add(new PieChart.Data("Lleida", percentatgesSales.get(3).intValue()));
-        quesitoCinesData.add(new PieChart.Data("Illes Balears", percentatgesSales.get(4).intValue()));
 
-        quesitoCinemas.setData(quesitoCinesData);
-        quesitoCinemas.setTitle("Sales de cine per provincia");
+        if ( quesitoCinesData.size() == 0) {
+            PercentatgesPieChar percentatgesPieChar = new PercentatgesPieChar();
+            percentatgesSales = percentatgesPieChar.percentatgeProvincias(llistaSales);
+            quesitoCinesData.add(new PieChart.Data("Barcelona", percentatgesSales.get(0).intValue()));
+            quesitoCinesData.add(new PieChart.Data("Girona", percentatgesSales.get(1).intValue()));
+            quesitoCinesData.add(new PieChart.Data("Tarragona", percentatgesSales.get(2).intValue()));
+            quesitoCinesData.add(new PieChart.Data("Lleida", percentatgesSales.get(3).intValue()));
+            quesitoCinesData.add(new PieChart.Data("Illes Balears", percentatgesSales.get(4).intValue()));
 
-        TableColumn id = new TableColumn("id");
-        TableColumn nom = new TableColumn("nom");
-        TableColumn adreca = new TableColumn("adreca");
-        TableColumn localitat = new TableColumn("localitat");
-        TableColumn comarca = new TableColumn("comarca");
-        TableColumn provincia = new TableColumn("provincia");
-
-        id.setCellValueFactory(new PropertyValueFactory<ItemSales, String>("id"));
-        nom.setCellValueFactory(new PropertyValueFactory<ItemSales, String>("nom"));
-        adreca.setCellValueFactory(new PropertyValueFactory<ItemSales, String>("adreca"));
-        localitat.setCellValueFactory(new PropertyValueFactory<ItemSales, String>("localitat"));
-        comarca.setCellValueFactory(new PropertyValueFactory<ItemSales, String>("comarca"));
-        provincia.setCellValueFactory(new PropertyValueFactory<ItemSales, String>("provincia"));
-        tabSalas.getColumns().addAll(id, nom, adreca, localitat, comarca, provincia);
-        tabSalas.setItems(dataSales);
-
-        for (Sales sales : llistaSales) {
-            dataSales.add(new ItemSales(sales.getId(), sales.getNom(), sales.getAdreca(),sales.getLocalitat(), sales.getComarca(), sales.getProvincia()));
+            quesitoCinemas.setData(quesitoCinesData);
+            quesitoCinemas.setTitle("Sales de cine per provincia");
         }
+        if (tabSalas.getColumns().size() == 0) {
+
+            TableColumn id = new TableColumn("id");
+            TableColumn nom = new TableColumn("nom");
+            TableColumn adreca = new TableColumn("adreca");
+            TableColumn localitat = new TableColumn("localitat");
+            TableColumn comarca = new TableColumn("comarca");
+            TableColumn provincia = new TableColumn("provincia");
+
+            id.setCellValueFactory(new PropertyValueFactory<ItemSales, String>("id"));
+            nom.setCellValueFactory(new PropertyValueFactory<ItemSales, String>("nom"));
+            adreca.setCellValueFactory(new PropertyValueFactory<ItemSales, String>("adreca"));
+            localitat.setCellValueFactory(new PropertyValueFactory<ItemSales, String>("localitat"));
+            comarca.setCellValueFactory(new PropertyValueFactory<ItemSales, String>("comarca"));
+            provincia.setCellValueFactory(new PropertyValueFactory<ItemSales, String>("provincia"));
+            tabSalas.getColumns().addAll(id, nom, adreca, localitat, comarca, provincia);
+            tabSalas.setItems(dataSales);
+
+            for (Sales sales : llistaSales) {
+                dataSales.add(new ItemSales(sales.getId(), sales.getNom(), sales.getAdreca(), sales.getLocalitat(), sales.getComarca(), sales.getProvincia()));
+            }
+        }
+        llistaSales.clear();
     }
     void setTabPeliculas() {
         llistaPelis = new ArrayList<>();
         llistaPelis = new Pelicules().llegirXmlPelis(llistaPelis);
         PercentatgesPieChar percentatgesPieChar = new PercentatgesPieChar();
         percentatgesPelis = percentatgesPieChar.percentatgeIdioma(llistaPelis);
-        System.out.println("tamnay: " + percentatgesPelis.size());
-        quesitoPelisData.add(new PieChart.Data("Francès", percentatgesPelis.get(0).intValue()));
-        quesitoPelisData.add(new PieChart.Data("Anglès", percentatgesPelis.get(1).intValue()));
-        quesitoPelisData.add(new PieChart.Data("Castellà", percentatgesPelis.get(2).intValue()));
-        quesitoPelisData.add(new PieChart.Data("Català", percentatgesPelis.get(3).intValue()));
-        quesitoPelisData.add(new PieChart.Data("Alemany", percentatgesPelis.get(4).intValue()));
-        quesitoPelisData.add(new PieChart.Data("Italià", percentatgesPelis.get(5).intValue()));
 
-        quesitoPelis.setData(quesitoPelisData);
-        quesitoPelis.setTitle("Idiomes de las Pel·licules");
+        if ( quesitoPelisData.size() == 0) {
+            quesitoPelisData.add(new PieChart.Data("Francès", percentatgesPelis.get(0).intValue()));
+            quesitoPelisData.add(new PieChart.Data("Anglès", percentatgesPelis.get(1).intValue()));
+            quesitoPelisData.add(new PieChart.Data("Castellà", percentatgesPelis.get(2).intValue()));
+            quesitoPelisData.add(new PieChart.Data("Català", percentatgesPelis.get(3).intValue()));
+            quesitoPelisData.add(new PieChart.Data("Alemany", percentatgesPelis.get(4).intValue()));
+            quesitoPelisData.add(new PieChart.Data("Italià", percentatgesPelis.get(5).intValue()));
 
-        TableColumn name = new TableColumn("name");
-        TableColumn any = new TableColumn("any");
-        TableColumn original = new TableColumn("original");
-        TableColumn direccio = new TableColumn("direccio");
-        TableColumn versio = new TableColumn("versio");
-        TableColumn idioma = new TableColumn("idioma");
-        TableColumn dataEstrena = new TableColumn("dataEstrena");
-        TableColumn interpret = new TableColumn("interpret");
-
-        name.setCellValueFactory(new PropertyValueFactory<Item, String>("name"));
-        any.setCellValueFactory(new PropertyValueFactory<Item, String>("any"));
-        original.setCellValueFactory(new PropertyValueFactory<Item, String>("original"));
-        direccio.setCellValueFactory(new PropertyValueFactory<Item, String>("direccio"));
-        versio.setCellValueFactory(new PropertyValueFactory<Item, String>("versio"));
-        idioma.setCellValueFactory(new PropertyValueFactory<Item, String>("idioma"));
-        dataEstrena.setCellValueFactory(new PropertyValueFactory<Item, String>("dataEstrena"));
-        interpret.setCellValueFactory(new PropertyValueFactory<Item, List<String>>("interpret"));
-        tabPeliculas.getColumns().addAll(name, any, original, direccio, versio, idioma, dataEstrena, interpret );
-        tabPeliculas.setItems(dataPeliculas);
-
-        for (Pelis pelis : llistaPelis) {
-            dataPeliculas.add(new Item(pelis.getIdFilm(), pelis.getTitol(), pelis.getAny(), pelis.getOriginal(),pelis.getDireccio(), pelis.getVersio(), pelis.getIdioma(), pelis.getDataEstrena(), pelis.getCartell(),pelis.getSinopsi(), pelis.getInterprets()));
-
+            quesitoPelis.setData(quesitoPelisData);
+            quesitoPelis.setTitle("Idiomes de las Pel·licules");
         }
+        if (tabPeliculas.getColumns().size() == 0) {
+            TableColumn name = new TableColumn("name");
+            TableColumn any = new TableColumn("any");
+            TableColumn original = new TableColumn("original");
+            TableColumn direccio = new TableColumn("direccio");
+            TableColumn versio = new TableColumn("versio");
+            TableColumn idioma = new TableColumn("idioma");
+            TableColumn dataEstrena = new TableColumn("dataEstrena");
+            TableColumn interpret = new TableColumn("interpret");
+
+            name.setCellValueFactory(new PropertyValueFactory<Item, String>("name"));
+            any.setCellValueFactory(new PropertyValueFactory<Item, String>("any"));
+            original.setCellValueFactory(new PropertyValueFactory<Item, String>("original"));
+            direccio.setCellValueFactory(new PropertyValueFactory<Item, String>("direccio"));
+            versio.setCellValueFactory(new PropertyValueFactory<Item, String>("versio"));
+            idioma.setCellValueFactory(new PropertyValueFactory<Item, String>("idioma"));
+            dataEstrena.setCellValueFactory(new PropertyValueFactory<Item, String>("dataEstrena"));
+            interpret.setCellValueFactory(new PropertyValueFactory<Item, List<String>>("interpret"));
+            tabPeliculas.getColumns().addAll(name, any, original, direccio, versio, idioma, dataEstrena, interpret);
+            tabPeliculas.setItems(dataPeliculas);
+
+            for (Pelis pelis : llistaPelis) {
+                dataPeliculas.add(new Item(pelis.getIdFilm(), pelis.getTitol(), pelis.getAny(), pelis.getOriginal(), pelis.getDireccio(), pelis.getVersio(), pelis.getIdioma(), pelis.getDataEstrena(), pelis.getCartell(), pelis.getSinopsi(), pelis.getInterprets()));
+
+            }
+        }
+        llistaPelis.clear();
     }
     void setTabSessions() {
         llistaSessions = new ArrayList<>();
         llistaSessions = new Lsessions().llegirXmlSessions(llistaSessions);
 
-        TableColumn idFilm = new TableColumn("idFilm");
-        TableColumn ses_id = new TableColumn("ses_id");
-        TableColumn cineId = new TableColumn("Cine iD");
-        TableColumn titol = new TableColumn("Titol");
-        TableColumn ses_data = new TableColumn("Sessio Data");
-        TableColumn cineNom = new TableColumn("Nom Cinema");
-        TableColumn localitat = new TableColumn("Localitat");
-        TableColumn comarca = new TableColumn("Comarca");
-        TableColumn cicleId = new TableColumn("Cicle Id");
-        TableColumn ver = new TableColumn("ver");
-        TableColumn preu = new TableColumn("preu");
-        TableColumn orderSessio = new TableColumn("Ordre Sessio");
+        if (tabSessions.getColumns().size() == 0) {
 
-        idFilm.setCellValueFactory(new PropertyValueFactory<ItemSessions, String>("idFilm"));
-        ses_id.setCellValueFactory(new PropertyValueFactory<ItemSessions, String>("ses_id"));
-        cineId.setCellValueFactory(new PropertyValueFactory<ItemSessions, String>("cineId"));
-        titol.setCellValueFactory(new PropertyValueFactory<ItemSessions, String>("titol"));
-        ses_data.setCellValueFactory(new PropertyValueFactory<ItemSessions, String>("ses_data"));
-        cineNom.setCellValueFactory(new PropertyValueFactory<ItemSessions, String>("cineNom"));
-        localitat.setCellValueFactory(new PropertyValueFactory<ItemSessions, String>("localitat"));
-        comarca.setCellValueFactory(new PropertyValueFactory<ItemSessions, List<String>>("comarca"));
-        cicleId.setCellValueFactory(new PropertyValueFactory<ItemSessions, List<String>>("cicleId"));
-        ver.setCellValueFactory(new PropertyValueFactory<ItemSessions, List<String>>("ver"));
-        preu.setCellValueFactory(new PropertyValueFactory<ItemSessions, List<String>>("preu"));
-        orderSessio.setCellValueFactory(new PropertyValueFactory<ItemSessions, List<String>>("orderSessio"));
+            TableColumn idFilm = new TableColumn("idFilm");
+            TableColumn ses_id = new TableColumn("ses_id");
+            TableColumn cineId = new TableColumn("Cine iD");
+            TableColumn titol = new TableColumn("Titol");
+            TableColumn ses_data = new TableColumn("Sessio Data");
+            TableColumn cineNom = new TableColumn("Nom Cinema");
+            TableColumn localitat = new TableColumn("Localitat");
+            TableColumn comarca = new TableColumn("Comarca");
+            TableColumn cicleId = new TableColumn("Cicle Id");
+            TableColumn ver = new TableColumn("ver");
+            TableColumn preu = new TableColumn("preu");
+            TableColumn orderSessio = new TableColumn("Ordre Sessio");
 
-        tabSessions.getColumns().addAll(idFilm, ses_id, cineId, titol, ses_data, cineNom, localitat, comarca, cicleId, ver, preu, orderSessio);
-        tabSessions.setItems(dataSessions);
+            idFilm.setCellValueFactory(new PropertyValueFactory<ItemSessions, String>("idFilm"));
+            ses_id.setCellValueFactory(new PropertyValueFactory<ItemSessions, String>("ses_id"));
+            cineId.setCellValueFactory(new PropertyValueFactory<ItemSessions, String>("cineId"));
+            titol.setCellValueFactory(new PropertyValueFactory<ItemSessions, String>("titol"));
+            ses_data.setCellValueFactory(new PropertyValueFactory<ItemSessions, String>("ses_data"));
+            cineNom.setCellValueFactory(new PropertyValueFactory<ItemSessions, String>("cineNom"));
+            localitat.setCellValueFactory(new PropertyValueFactory<ItemSessions, String>("localitat"));
+            comarca.setCellValueFactory(new PropertyValueFactory<ItemSessions, List<String>>("comarca"));
+            cicleId.setCellValueFactory(new PropertyValueFactory<ItemSessions, List<String>>("cicleId"));
+            ver.setCellValueFactory(new PropertyValueFactory<ItemSessions, List<String>>("ver"));
+            preu.setCellValueFactory(new PropertyValueFactory<ItemSessions, List<String>>("preu"));
+            orderSessio.setCellValueFactory(new PropertyValueFactory<ItemSessions, List<String>>("orderSessio"));
 
-        for (Sessions sessio : llistaSessions) {
-            dataSessions.add(new ItemSessions(sessio.getIdFilm(), sessio.getSes_id(), sessio.getCineId(),sessio.getTitol(),
-                    sessio.getSes_data(), sessio.getCineNom(), sessio.getLocalitat(), sessio.getComarca(),
-                    sessio.getCicleId(), sessio.getVer(), sessio.getPreu(), sessio.getOrderSessio()));
+            tabSessions.getColumns().addAll(idFilm, ses_id, cineId, titol, ses_data, cineNom, localitat, comarca, cicleId, ver, preu, orderSessio);
+            tabSessions.setItems(dataSessions);
 
+            for (Sessions sessio : llistaSessions) {
+                dataSessions.add(new ItemSessions(sessio.getIdFilm(), sessio.getSes_id(), sessio.getCineId(), sessio.getTitol(),
+                        sessio.getSes_data(), sessio.getCineNom(), sessio.getLocalitat(), sessio.getComarca(),
+                        sessio.getCicleId(), sessio.getVer(), sessio.getPreu(), sessio.getOrderSessio()));
+            }
         }
+        llistaSessions.clear();
     }
 }

@@ -41,13 +41,10 @@ public class PercentatgesPieChar {
         }catch (Exception e){
             System.out.println("Ha hagut un error al calcula percentages");
         }
-        System.out.println("resultat aqui: " + frances);
-
         return retornoPelis;
     }
 
     public List<Integer> percentatgeProvincias(List<Sales> llistaSales){
-
         try {
             int barcelona = (int) llistaSales.stream().filter(x -> x.getProvincia().equalsIgnoreCase("Barcelona"))
                     .count();
@@ -59,7 +56,6 @@ public class PercentatgesPieChar {
                     .count();
             int illes  = (int) llistaSales.stream().filter(x -> x.getProvincia().equalsIgnoreCase("Illes Balears"))
                     .count();
-            System.out.println("metode percentatge: " + barcelona);
             retorno.add(barcelona);
             retorno.add(girona);
             retorno.add(tarragona);
